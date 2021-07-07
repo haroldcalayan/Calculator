@@ -1,0 +1,57 @@
+ext {
+    // Kotlin
+    kotlinXVersion = "1.3.8"
+    kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    kotlinXCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXVersion"
+
+    // AndroidX
+    androidXVersion1_1_0 = "1.1.0"
+    androidXVersion1_2_0 = "1.2.0"
+    androidXVersion1_3_0 = "1.3.0"
+    androidXVersion1_5_0 = "1.5.0"
+    androidXVersion2_0_4 = "2.0.4"
+    androidXVersion2_2_0 = "2.2.0"
+    androidXDependencies = [
+            activityKTX             : "androidx.activity:activity-ktx:$androidXVersion1_2_0",
+            annotation              : "androidx.appcompat:appcompat:$androidXVersion1_1_0",
+            appCompat               : "androidx.appcompat:appcompat:$androidXVersion1_3_0",
+            coreKTX                 : "androidx.core:core-ktx:$androidXVersion1_5_0",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:$androidXVersion2_0_4",
+            lifecycleExtension      : "androidx.lifecycle:lifecycle-extensions:$androidXVersion2_2_0",
+            lifecycleLiveDataKTX    : "androidx.lifecycle:lifecycle-livedata-ktx:$androidXVersion2_2_0",
+            lifecycleRuntimeKTX     : "androidx.lifecycle:lifecycle-runtime-ktx:$androidXVersion2_2_0",
+            lifecycleViewModelKTX   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidXVersion2_2_0",
+            recyclerView            : "androidx.recyclerview:recyclerview:$androidXVersion1_1_0"
+    ]
+
+    // Google
+    googleVersion1_3_0 = "1.3.0"
+    googleDependencies = [
+            material                : "com.google.android.material:material:$googleVersion1_3_0"
+    ]
+
+    // Timber
+    timberVersion = "4.7.1"
+    timberDependency = "com.jakewharton.timber:timber:$timberVersion"
+
+    // Hilt
+    hiltDependencies = [
+            hiltAndroid              : "com.google.dagger:hilt-android:$hilt_version",
+            hiltAndroidCompiler      : "com.google.dagger:hilt-android-compiler:$hilt_version",
+    ]
+
+    // AndroidX Test
+    androidXTestVersion1_1_2 = "1.1.2"
+    androidXTestVersion1_3_0 = "1.3.0"
+    androidXTestVersion3_3_0 = "3.3.0"
+    androidXTestDependencies = [
+            espresso                 : "androidx.test.espresso:espresso-core:$androidXTestVersion3_3_0",
+            jUnitExt                 : "androidx.test.ext:junit:$androidXTestVersion1_1_2",
+            rules                    : "androidx.test:rules:$androidXTestVersion1_3_0",
+            runner                   : "androidx.test:runner:$androidXTestVersion1_3_0"
+    ]
+
+    // JUnit
+    jUnitVersion = "4.+"
+    jUnitDependency = "junit:junit:$jUnitVersion"
+}
