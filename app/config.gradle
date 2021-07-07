@@ -1,0 +1,10 @@
+ext.configs = [
+        applicationName     : "Calculator",
+        applicationId       : "com.haroldcalayan.calculator",
+        versionCode         : 1,
+        versionName         : "0.0.1",
+        minSdkVersion       : 21,
+        targetSdkVersion    : 30,
+        compileSdkVersion   : 30,
+        buildToolsVersion   : "30.0.2",
+]
