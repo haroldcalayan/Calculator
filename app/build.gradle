@@ -1,45 +1,103 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
+apply from: "config.gradle"
+apply from: "dependencies.gradle"
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion configs.compileSdkVersion
+    buildToolsVersion configs.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.haroldcalayan.calculator"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        applicationId configs.applicationId
+        minSdkVersion configs.minSdkVersion
+        targetSdkVersion configs.targetSdkVersion
+        versionCode configs.versionCode
+        versionName configs.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            storeFile file('keystore/release.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
             minifyEnabled false
+            zipAlignEnabled false
+            manifestPlaceholders = [enableCrashReporting: "false"]
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = outputFileName.replace("app", "Calculator-v" + defaultConfig.versionName)
+        }
     }
 }
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Kotlin
+    implementation kotlinStdLib
+    implementation kotlinXCoroutine
+
+    // AndroidX
+    implementation androidXDependencies.activityKTX
+    implementation androidXDependencies.annotation
+    implementation androidXDependencies.appCompat
+    implementation androidXDependencies.constraintLayout
+    implementation androidXDependencies.coreKTX
+    implementation androidXDependencies.lifecycleExtension
+    implementation androidXDependencies.lifecycleLiveDataKTX
+    implementation androidXDependencies.lifecycleRuntimeKTX
+    implementation androidXDependencies.lifecycleViewModelKTX
+    implementation androidXDependencies.recyclerView
+
+    // Google
+    implementation googleDependencies.material
+
+    // Hilt
+    implementation hiltDependencies.hiltAndroid
+    kapt hiltDependencies.hiltAndroidCompiler
+
+    // Timber
+    implementation timberDependency
+
+    // Unit Test
+    testImplementation jUnitDependency
+    androidTestImplementation androidXTestDependencies.espresso
+    androidTestImplementation androidXTestDependencies.jUnitExt
 }
