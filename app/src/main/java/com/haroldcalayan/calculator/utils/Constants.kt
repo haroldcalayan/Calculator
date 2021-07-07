@@ -13,5 +13,7 @@ object Constants {
 
     const val SCREEN_PORTRAIT_SPAN_COUNT = 3
     const val SCREEN_LANDSCAPE_SPAN_COUNT = 6
+    const val SCREEN_PORTRAIT_MAX_LINES = 4
+    const val SCREEN_LANSCAPE_MAX_LINES = 2
 
 }

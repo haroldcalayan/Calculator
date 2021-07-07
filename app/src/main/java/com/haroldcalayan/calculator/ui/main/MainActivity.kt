@@ -14,6 +14,8 @@ import com.haroldcalayan.calculator.base.BaseActivity
 import com.haroldcalayan.calculator.databinding.ActivityMainBinding
 import com.haroldcalayan.calculator.utils.Constants.BUTTON_TEXTS
 import com.haroldcalayan.calculator.utils.Constants.SCREEN_LANDSCAPE_SPAN_COUNT
+import com.haroldcalayan.calculator.utils.Constants.SCREEN_LANSCAPE_MAX_LINES
+import com.haroldcalayan.calculator.utils.Constants.SCREEN_PORTRAIT_MAX_LINES
 import com.haroldcalayan.calculator.utils.Constants.SCREEN_PORTRAIT_SPAN_COUNT
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
@@ -71,10 +73,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     private fun updateViewsBasedOrientation(orientation: Int) {
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             layoutManager.spanCount = SCREEN_LANDSCAPE_SPAN_COUNT
-            binding.textviewDisplay.maxLines = 2
+            binding.textviewDisplay.maxLines = SCREEN_LANSCAPE_MAX_LINES
         } else {
             layoutManager.spanCount = SCREEN_PORTRAIT_SPAN_COUNT
-            binding.textviewDisplay.maxLines = 4
+            binding.textviewDisplay.maxLines = SCREEN_PORTRAIT_MAX_LINES
         }
         layoutManager.requestLayout()
         buttonAdapter.notifyDataSetChanged()
