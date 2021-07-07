@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.haroldcalayan.calculator.R
 import com.haroldcalayan.calculator.base.BaseActivity
 import com.haroldcalayan.calculator.databinding.ActivityMainBinding
-import com.haroldcalayan.calculator.utils.Constants
 import com.haroldcalayan.calculator.utils.Constants.BUTTON_TEXTS
 import com.haroldcalayan.calculator.utils.Constants.SCREEN_LANDSCAPE_SPAN_COUNT
 import com.haroldcalayan.calculator.utils.Constants.SCREEN_PORTRAIT_SPAN_COUNT
-import timber.log.Timber
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     ButtonAdapter.ButtonAdapterListener {
@@ -78,7 +76,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
             layoutManager.spanCount = SCREEN_PORTRAIT_SPAN_COUNT
             binding.textviewDisplay.maxLines = 4
         }
-        Timber.d("layoutManager.spanCount: " + layoutManager.spanCount)
         layoutManager.requestLayout()
         buttonAdapter.notifyDataSetChanged()
     }
